@@ -17,6 +17,7 @@ switch($request_method)
    }
    else
    {
+    //  error_log("getMovies called!", 0);
      getMovies(); //all movies
    }
    break;
@@ -52,7 +53,7 @@ function getMovies()
   $query="SELECT * FROM movies";
   $response=array();
   $result=mysqli_query($connection, $query);
-  while($row=mysqli_fetch_array($result))
+  while($row=mysqli_fetch_assoc($result))
   {
     $response[]=$row;
   }
@@ -70,7 +71,7 @@ function getMovieById($id=0)
   }
   $response=array();
   $result=mysqli_query($connection, $query);
-  while($row=mysqli_fetch_array($result))
+  while($row=mysqli_fetch_assoc($result))
   {
     $response[]=$row;
   }
