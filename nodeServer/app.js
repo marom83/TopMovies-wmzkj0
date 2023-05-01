@@ -2,9 +2,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
+const swaggerUI = require("swagger-ui-express"),swaggerDocument = require('./openapi.json');
 
 // Create express app
 const app = express();
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // Configure middleware
 app.use(bodyParser.json());
@@ -33,7 +36,7 @@ let movies = [
 
 // Define endpoints
 
-app.get('/', (req, res) => {
+app.get('/api/movie', (req, res) => {
     const id = req.query.id;
     const options = {
         hostname: 'localhost',
@@ -63,14 +66,38 @@ app.get('/', (req, res) => {
       });
 });
 
-app.post('/', (req, res) => {
+app.post('/api/movie', (req, res) => {
     const { title, description, cast } = req.body;
     if (!title || !description || !cast) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
-    const movie = { id: uuidv4(), title, description, cast };
-    movies.push(movie);
-    res.status(201).json(movie);
+
+    const options = {
+        hostname: 'localhost',
+        port: 80,
+        path: '',
+        method: 'POST',
+      };
+
+      const proxyReq = http.request(options, (proxyRes) => {
+        let data = '';
+    
+        proxyRes.on('data', (chunk) => {
+          data += chunk;
+        });
+    
+        proxyRes.on('end', () => {
+          const result = JSON.parse(data);
+          if (!result) {
+            return res.status(404).json({ error: 'Movie not found' });
+          }
+          res.send(result);
+        });
+      });
+    
+      req.pipe(proxyReq, {
+        end: true
+      });
 });
 
 app.put('/:id', (req, res) => {

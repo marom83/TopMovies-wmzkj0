@@ -87,7 +87,7 @@ function createMovie()
     $title=$data["title"]; //separate them
     $description=$data["description"];
     $cast=$data["cast"];
-    $query="INSERT INTO movies SET name='".$title."', stock='".$description."', price='".$cast."'";
+    $query="INSERT INTO movies SET title='".$title."', description='".$description."', cast='".$cast."'";
     if(mysqli_query($connection, $query))
     {
        $response=array(
@@ -136,7 +136,7 @@ function updateMovie($id)
    $title=$data["title"]; //separate them
    $description=$data["description"];
    $cast=$data["cast"];
-   $query="UPDATE movies SET name='".$title."', stock='".$description."', price='".$cast."'  WHERE id=".$id;
+   $query="UPDATE movies SET title='".$title."', description='".$description."', cast='".$cast."'  WHERE id=".$id;
    if(mysqli_query($connection, $query))
    {
       $response=array(
