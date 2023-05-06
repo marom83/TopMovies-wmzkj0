@@ -93,7 +93,7 @@
         ],
         "summary": "Update an existing movie",
         "description": "Update an existing movie by Id",
-        "operationId": "moviePet",
+        "operationId": "updateMovie",
         "parameters": [
           {
             "name": "id",
