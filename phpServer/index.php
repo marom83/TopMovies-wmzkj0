@@ -29,8 +29,7 @@ switch($request_method)
 
  case 'PUT':
    // Update an movie (with id) and PUT method
-   $id=intval($_GET["id"]);
-   updateMovie($id);
+   updateMovie();
    break;
    
  case 'DELETE':
@@ -129,11 +128,12 @@ function deleteMovie($id)
 }
                   
 
-function updateMovie($id)
+function updateMovie()
  {
    global $connection;
    $data = json_decode(file_get_contents("php://input"),true);
-   $title=$data["title"]; //separate them
+   $id=$data["id"];
+   $title=$data["title"];
    $description=$data["description"];
    $cast=$data["cast"];
    $query="UPDATE movies SET title='".$title."', description='".$description."', cast='".$cast."'  WHERE id=".$id;
