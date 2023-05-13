@@ -1,0 +1,19 @@
+<div class="flex">
+    <div>
+        <h1>Edit movie</h1>
+        <ul>
+            <li><input value="{{movie.title}}" placeholder="title of movie"></li>
+            <li><textarea placeholder="description of movie">{{movie.description}}</textarea></li>
+            <li><textarea placeholder="cast of movie">{{movie.cast}}</textarea></li>
+        </ul>
+    </div>
+
+    <div>
+        <button *ngIf="id" (click)="deleteMovie()">Delete</button> 
+        <button (click)="saveMovie()">Save</button>
+        <a routerLink="">Back</a>
+    </div>
+</div>
+
+
+

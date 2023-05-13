@@ -60,22 +60,14 @@ function getMovies()
   echo json_encode($response); //data in JSON format
 }
 
-function getMovieById($id=0)
+function getMovieById($id)
 {
   global $connection;
-  $query="SELECT * FROM movies";
-  if($id != 0)
-  {
-    $query.=" WHERE id=".$id." LIMIT 1"; //get movie with a given id
-  }
-  $response=array();
-  $result=mysqli_query($connection, $query);
-  while($row=mysqli_fetch_assoc($result))
-  {
-    $response[]=$row;
-  }
+  $query="SELECT * FROM movies WHERE id=".$id." LIMIT 1"; //get movie with a given id
+  $result = mysqli_query($connection, $query);
+  $movie = mysqli_fetch_assoc($result);
   header('Content-Type: application/json'); //header
-  echo json_encode($response); //in JSON format
+  echo json_encode($movie); //in JSON format
 }
 
 function createMovie()

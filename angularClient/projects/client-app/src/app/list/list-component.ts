@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieService } from 'projects/client-lib';
 
 @Component({
@@ -10,5 +11,10 @@ export class ListComponent {
 
   movies$ = this.movieService.findAllMovies();
 
-  constructor(private movieService: MovieService){}
+  constructor(private movieService: MovieService, private router: Router){}
+
+  goToMovie(id?: number) {
+      this.router.navigate(['/detail', id]);
+      return false;
+  }
 }

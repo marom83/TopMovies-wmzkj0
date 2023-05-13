@@ -1,0 +1,12 @@
+<div class="flex">
+    <div>
+        <h1>Movies</h1>
+        <div *ngFor="let movie of movies$ | async">
+            <a (click)="goToMovie(movie.id)" href="">{{movie.title}}</a> 
+        </div>
+    </div>
+
+    <a routerLink="/detail/0">Create...</a>
+</div>
+
+
