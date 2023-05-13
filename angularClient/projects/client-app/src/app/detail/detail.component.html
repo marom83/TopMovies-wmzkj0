@@ -1,19 +1,26 @@
 <div class="flex">
     <div>
         <h1>Edit movie</h1>
-        <ul>
-            <li><input value="{{movie.title}}" placeholder="title of movie"></li>
-            <li><textarea placeholder="description of movie">{{movie.description}}</textarea></li>
-            <li><textarea placeholder="cast of movie">{{movie.cast}}</textarea></li>
-        </ul>
+        <form (ngSubmit)="saveMovie()">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" name="title" [(ngModel)]="movie.title" placeholder="title of movie">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" [(ngModel)]="movie.description"
+                    placeholder="description of movie"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="cast">Cast</label>
+                <textarea class="form-control" id="cast" name="cast" [(ngModel)]="movie.cast" placeholder="cast of movie"></textarea>
+            </div>
+            <button type="submit">Save</button>
+        </form>
     </div>
 
     <div>
-        <button *ngIf="id" (click)="deleteMovie()">Delete</button> 
-        <button (click)="saveMovie()">Save</button>
+        <button *ngIf="id" (click)="deleteMovie()">Delete</button>
         <a routerLink="">Back</a>
     </div>
 </div>
-
-
-
