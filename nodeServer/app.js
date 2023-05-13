@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const http = require('http');
 const swaggerUI = require("swagger-ui-express"), swaggerDocument = require('./openapi.json');
@@ -10,6 +11,8 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // Configure middleware
 app.use(bodyParser.json());
+
+app.use(cors());
 
 // Define endpoints
 app.get('/api/movie', (req, res) => {
