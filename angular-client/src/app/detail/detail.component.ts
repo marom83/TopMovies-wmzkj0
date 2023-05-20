@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Movie, MovieService, UserService } from 'projects/client-lib';
+import { Movie, MovieService, UserService } from 'top-movies-client-api';
 
 @Component({
   selector: 'app-detail',

@@ -1,16 +1,16 @@
 <div class="flex">
     <main>
         <div class="text-center">Please, log in!</div>
-        <form (submit)="login()">
+        <form (ngSubmit)="login()" [formGroup]="auth">
             <div class="row" style="width: 500px; margin:auto">
                 <div class="col">
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" [formControl]="email">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" formControlName="email">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" [formControl]="password">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" formControlName="password">
                     </div>
                     <button type="submit">Login</button>
                 </div>

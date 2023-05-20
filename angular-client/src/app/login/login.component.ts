@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'projects/client-lib';
+import { UserService } from 'top-movies-client-api';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +9,10 @@ import { UserService } from 'projects/client-lib';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  email=new FormControl('');
-  password=new FormControl('');
+  auth=new FormGroup({
+    email:new FormControl(''),
+    password:new FormControl('')
+  })
 
   constructor(private router: Router,private userService: UserService) {}
 
