@@ -9,10 +9,11 @@ import { UserService } from 'top-movies-client-api';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  
   auth=new FormGroup({
     email:new FormControl(''),
     password:new FormControl('')
-  })
+  });
 
   constructor(private router: Router,private userService: UserService) {}
 
