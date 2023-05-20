@@ -200,6 +200,16 @@ app.delete('/api/movie/:id', (req, res) => {
   });
 });
 
+app.get('/api/user/login', (req, res) => {
+  const { username, password } = req.query;
+
+  // Proxy the request to the PHP server
+  proxy.web(req, res, { target: 'http://localhost:80' });
+
+  // Log the login attempt
+  console.log(`Attempting login with username ${username} and password ${password}`);
+});
+
 // Start server
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
