@@ -20,8 +20,8 @@
     </div>
 
     <div>
-        <button *ngIf="id" (click)="deleteMovie()">Delete</button>
+        <button *ngIf="id && isLoggedIn" (click)="deleteMovie()">Delete</button>
         <a routerLink="">Back</a>
-        <button (click)="logout()">Logout</button>
+        <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
     </div>
 </div>

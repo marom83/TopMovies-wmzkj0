@@ -18,13 +18,13 @@ export class LoginComponent {
   constructor(private router: Router,private userService: UserService) {}
 
   login() {
-    this.userService.loginUser().subscribe({
+    this.userService.loginUser(this.auth.value.email!, this.auth.value.password!).subscribe({
       next: () => {
         localStorage.setItem('isLoggedIn', 'true')
         this.router.navigate(['/list']);
       },
-      error: () => {
-        console.log('error');
+      error: (error) => {
+        console.log(error.error);
       }
     })
   }

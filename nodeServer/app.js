@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const http = require('http');
 const swaggerUI = require("swagger-ui-express"), swaggerDocument = require('./openapi.json');
+const db = require('./db');
 
 // Create express app
 const app = express();
@@ -200,14 +201,18 @@ app.delete('/api/movie/:id', (req, res) => {
   });
 });
 
-app.get('/api/user/login', (req, res) => {
+app.get('/api/user/login', async (req, res) => {
   const { username, password } = req.query;
 
-  // Proxy the request to the PHP server
-  proxy.web(req, res, { target: 'http://localhost:80' });
+  const rows = await db.query(
+    `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`
+  );
 
-  // Log the login attempt
-  console.log(`Attempting login with username ${username} and password ${password}`);
+  if (rows.length === 0) {
+    return res.status(404).json({ error: 'User not found' });
+  } else {
+    return res.send(rows[0]);
+  }
 });
 
 // Start server

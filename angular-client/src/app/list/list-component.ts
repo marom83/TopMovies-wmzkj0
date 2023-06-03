@@ -9,9 +9,13 @@ import { MovieService, UserService } from 'top-movies-client-api';
 })
 export class ListComponent {
 
+  isLoggedIn = false;
+
   movies$ = this.movieService.findAllMovies();
 
-  constructor(private movieService: MovieService, private router: Router, private userService: UserService){}
+  constructor(private movieService: MovieService, private router: Router, private userService: UserService){
+    localStorage.getItem("isLoggedIn") === "true" ? this.isLoggedIn = true : this.isLoggedIn = false;
+  }
 
   goToMovie(id?: number) {
       this.router.navigate(['/detail', id]);
@@ -19,7 +23,8 @@ export class ListComponent {
   }
 
   logout() {
+    this.userService.logoutUser();
     localStorage.clear();
-    this.router.navigateByUrl("/login");
+    this.isLoggedIn = false;
   }
 }

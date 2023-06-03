@@ -9,10 +9,13 @@ import { Movie, MovieService, UserService } from 'top-movies-client-api';
 })
 export class DetailComponent {
   
+  isLoggedIn = false;
   movie: Movie = {title: '', description: '', cast: ''};
   id?: number;
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService, private router: Router, private userService: UserService) {}
+  constructor(private route: ActivatedRoute, private movieService: MovieService, private router: Router, private userService: UserService) {
+    localStorage.getItem("isLoggedIn") === "true" ? this.isLoggedIn = true : this.isLoggedIn = false;
+  }
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -38,7 +41,8 @@ export class DetailComponent {
   }
 
   logout() {
-      localStorage.clear();
-      this.router.navigateByUrl("/login");
+    this.userService.logoutUser();
+    localStorage.clear();
+    this.isLoggedIn = false;
   }
 }

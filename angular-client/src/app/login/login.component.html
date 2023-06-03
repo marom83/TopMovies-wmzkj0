@@ -1,17 +1,19 @@
 <div class="flex">
     <main>
         <div class="text-center">Please, log in!</div>
-        <form (ngSubmit)="login()" [formGroup]="auth">
-            <div class="row" style="width: 500px; margin:auto">
-                <div class="col">
-                    <div class="mb-3">
+        <br>
+        <form (ngSubmit)="login()" [formGroup]="auth" ngNativeValidate>
+            <div style="width: 500px; margin:auto">
+                <div>
+                    <div style="margin-bottom:5px">
                         <label for="email">Email</label>
-                        <input type="email" id="email" formControlName="email">
+                        <input type="email" id="email" formControlName="email" required>
                     </div>
-                    <div class="mb-3">
+                    <div>
                         <label for="password">Password</label>
-                        <input type="password" id="password" formControlName="password">
+                        <input type="password" id="password" formControlName="password" required>
                     </div>
+                    <br>
                     <button type="submit">Login</button>
                 </div>
             </div>

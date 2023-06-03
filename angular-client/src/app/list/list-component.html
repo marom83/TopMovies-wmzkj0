@@ -7,8 +7,9 @@
     </main>
 
     <div>
-        <a routerLink="/detail/0">Create...</a>
-        <button (click)="logout()">Logout</button>
+        <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+        <a *ngIf="isLoggedIn" routerLink="/detail/0">Create...</a>
+        <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
     </div>
 </div>
 
