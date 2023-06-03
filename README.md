@@ -2,6 +2,7 @@
 
 ## Build&Run:
 npm install
+
 ng s
 
 http://localhost:4200
@@ -10,6 +11,7 @@ http://localhost:4200
 
 ## Build&Run:
 npm install
+
 node app.js
 
 http://localhost:3000
@@ -17,6 +19,8 @@ http://localhost:3000
 # Php server
 
 ## Build&Run:
+Copy connection.php and index.php into Xampp's htdocs folder.
+
 Run Xampp and Apache and Mysql.
 
 http://localhost:80
